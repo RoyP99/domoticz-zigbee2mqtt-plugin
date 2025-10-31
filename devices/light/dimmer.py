@@ -18,7 +18,7 @@ class DimmerLight(OnOffLight):
         value_max = self.brightness_feature['value_max']
         
         if value_key in value:
-            return int((value[value_key] - value_min) * self.MAX_BRIGHTNESS / (value_max - value_min))
+            return round((value[value_key] - value_min) * self.MAX_BRIGHTNESS / (value_max - value_min))
         else:
             return None
 
@@ -27,7 +27,7 @@ class DimmerLight(OnOffLight):
         value_min = self.brightness_feature['value_min']
         value_max = self.brightness_feature['value_max']
 
-        value = value_min + int(level * (value_max - value_min) / self.MAX_BRIGHTNESS)
+        value = value_min + round(level * (value_max - value_min) / self.MAX_BRIGHTNESS)
 
         return {
             value_key: value
