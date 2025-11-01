@@ -16,5 +16,8 @@ class DimmerSwitch(Device):
         args = super().get_device_args(value, device, message)
         last_level = int(args['sValue']) if len(args['sValue']) > 0 else 0
 
-        return dict(args, Color=self.get_color_value(value, device), LastLevel=last_level)
+        try:
+            return dict(args, Color=self.get_color_value(value, device), LastLevel=last_level)
+        except:
+            return dict(args, LastLevel=last_level)
         
